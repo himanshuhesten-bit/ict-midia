@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ChevronLeft, ChevronRight, Landmark, Phone } from "lucide-react";
-import heroImg from "../../public/images/banner-img/hero-img.jpg";
-import eventsImg from "../../public/images/workshop-audience.jpg";
-import communityImg from "../../public/images/community.jpg";
-import mediaImg from "../../public/images/media-coverage.jpg";
+import prBriefingImg from "../../public/images/hero/gov-pr-briefing.jpg";
+import stateConclaveImg from "../../public/images/hero/gov-state-conclave.jpg";
+import citizenOutreachImg from "../../public/images/hero/gov-citizen-outreach.jpg";
+import crisisMediaImg from "../../public/images/hero/gov-crisis-media.jpg";
 import { site } from "@/lib/site";
 
 interface HeroSlide {
@@ -20,7 +20,7 @@ interface HeroSlide {
   primaryCta: string;
   secondaryHref: string;
   secondaryCta: string;
-  image: typeof heroImg;
+  image: typeof prBriefingImg;
   imageAlt: string;
 }
 
@@ -36,8 +36,8 @@ const slides: HeroSlide[] = [
     primaryCta: "Explore PR Practice",
     secondaryHref: "/contact?interest=government-communications",
     secondaryCta: "Request Proposal (RFP)",
-    image: heroImg,
-    imageAlt: "Government communication and strategic PR briefing in Maharashtra",
+    image: prBriefingImg,
+    imageAlt: "Official Maharashtra Government press conference and ministerial PR briefing",
   },
   {
     id: "state-conclaves",
@@ -50,8 +50,8 @@ const slides: HeroSlide[] = [
     primaryCta: "Event Management PR",
     secondaryHref: "/clients#case-studies",
     secondaryCta: "Review Conclave Work",
-    image: eventsImg,
-    imageAlt: "Audience and state dignitaries assembled at official state conclave",
+    image: stateConclaveImg,
+    imageAlt: "Maharashtra State Strategic Summit dais and ministerial conclave",
   },
   {
     id: "citizen-outreach",
@@ -64,8 +64,8 @@ const slides: HeroSlide[] = [
     primaryCta: "Citizen PR Framework",
     secondaryHref: "/clients",
     secondaryCta: "Explore Citizen Impact",
-    image: communityImg,
-    imageAlt: "Community dialogue and citizen participation in Maharashtra",
+    image: citizenOutreachImg,
+    imageAlt: "Grassroots citizen welfare outreach campaign and public engagement in Maharashtra",
   },
   {
     id: "crisis-rebuttal",
@@ -78,8 +78,8 @@ const slides: HeroSlide[] = [
     primaryCta: "Crisis Management PR",
     secondaryHref: "/contact",
     secondaryCta: "Contact Liaison Desk",
-    image: mediaImg,
-    imageAlt: "Press conference microphones and media broadcast desk",
+    image: crisisMediaImg,
+    imageAlt: "24/7 Government media monitoring, fact-checking and news broadcast intelligence room",
   },
 ];
 

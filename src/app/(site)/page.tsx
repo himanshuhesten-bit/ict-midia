@@ -9,15 +9,15 @@ import {
   Languages,
   Newspaper,
   Phone,
-  ShieldAlert,
   ShieldCheck,
   TrendingUp,
 } from "lucide-react";
 import ClientLogoCarousel from "@/components/ClientLogoCarousel";
-import CountUp from "@/components/CountUp";
+import CountWrapper from "@/components/CountWrapper";
 import InteractiveServiceExplorer from "@/components/InteractiveServiceExplorer";
 import ModernHero from "@/components/ModernHero";
 import NextStep from "@/components/NextStep";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import { Container, Eyebrow } from "@/components/ui";
 import { blogArticles, readingMinutes } from "@/lib/blog";
 import { caseStudies } from "@/lib/clients";
@@ -28,36 +28,6 @@ export const metadata: Metadata = {
   description:
     "Empanelled PR & Strategic Communication Partner to Maharashtra Government Departments, Municipal Corporations, and Public Institutions since 2013.",
 };
-
-const metrics = [
-  { value: "13+", label: "Years Public Sector PR", sub: "Established 2013 in Nagpur" },
-  { value: "50+", label: "Government Bodies", sub: "Departments, PSUs & Municipalities" },
-  { value: "100+", label: "Assignments Delivered", sub: "Conclaves, Campaigns & Audits" },
-  { value: "23+", label: "Empanelled Authorities", sub: "Pan-Maharashtra Reach" },
-];
-
-const standards = [
-  {
-    icon: ShieldCheck,
-    title: "100% Protocol Fidelity",
-    desc: "Strict adherence to official administrative clearance protocols, gazettes, and legislative frameworks.",
-  },
-  {
-    icon: Newspaper,
-    title: "Pan-Maharashtra Bureau Network",
-    desc: "Daily liaison with accredited correspondents, regional press clubs, and television networks across all 36 districts.",
-  },
-  {
-    icon: ShieldAlert,
-    title: "24/7 Crisis PR Desks",
-    desc: "Continuous media monitoring and rapid-response desks to clarify rumors and protect institutional trust.",
-  },
-  {
-    icon: Languages,
-    title: "Multilingual Citizen Nuance",
-    desc: "Flawless communication in Marathi, Hindi, and English—translating complex policy into citizen understanding.",
-  },
-];
 
 const processSteps = [
   {
@@ -88,45 +58,50 @@ export default function HomePage() {
       {/* =========================================================================
           1. MODERN INTERACTIVE HERO SECTION: Agencyo/Digitos Inspired Authority
          ========================================================================= */}
-      <section className="bg-paper py-6 sm:py-8 lg:py-10">
+      <section className="bg-paper pt-6 pb-2 sm:pt-8 sm:pb-4 lg:pt-10 lg:pb-4">
         <Container>
           <ModernHero />
+
+          {/* =========================================================================
+              2. COUNT WRAPPER: Vidarbha Infotech Inspired Metric Counter Strip
+             ========================================================================= */}
+          <div className="mt-6 sm:mt-8">
+            <CountWrapper />
+          </div>
         </Container>
       </section>
 
       {/* =========================================================================
-          2. ANIMATED LOGO MARQUEE CAROUSEL: All 23 Government Partners
+          3. WHY CHOOSE US: Vidarbha Infotech Inspired .choose-wrapper
          ========================================================================= */}
-      <section className="border-y border-line bg-white py-6" id="clients">
+      <section className="border-y border-line bg-mist py-10 lg:py-16">
         <Container>
+          <WhyChooseUs />
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          4. OUR CLIENTELE: 23 Empanelled Government Partners Marquee
+         ========================================================================= */}
+      <section className="border-b border-line bg-white py-10 lg:py-12" id="clients">
+        <Container>
+          <div className="text-center max-w-2xl mx-auto mb-8">
+            <p className="font-mono text-xs font-bold uppercase tracking-[0.2em] text-teal">
+              Institutional Empanelment
+            </p>
+            <h2 className="mt-1 font-display text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-navy">
+              OUR <span className="text-teal">CLIENTELE</span>
+            </h2>
+            <p className="mt-2 text-xs sm:text-sm text-navy/70">
+              Trusted by MTDC, Mahagenco, Nagpur Municipal Corporation, Maharashtra Police, and 50+ Public Sector Bodies.
+            </p>
+          </div>
           <ClientLogoCarousel limit={23} />
         </Container>
       </section>
 
       {/* =========================================================================
-          3. METRICS STRIP: High Density & Public Sector Track Record
-         ========================================================================= */}
-      <section className="border-b border-line bg-mist py-6" aria-label="Key metrics">
-        <Container>
-          <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {metrics.map((m, i) => (
-              <div
-                key={m.label}
-                className={`pl-4 ${i === 0 ? "border-l-3 border-teal" : "border-l border-line"}`}
-              >
-                <dd className="font-display text-2xl font-extrabold leading-tight text-navy sm:text-3xl">
-                  <CountUp value={m.value} />
-                </dd>
-                <dt className="text-xs font-bold text-navy">{m.label}</dt>
-                <p className="text-[10.5px] text-navy/60">{m.sub}</p>
-              </div>
-            ))}
-          </dl>
-        </Container>
-      </section>
-
-      {/* =========================================================================
-          4. INTERACTIVE SERVICE EXPLORER: 9 Public Sector Capabilities
+          5. INTERACTIVE SERVICE EXPLORER: 9 Public Sector Capabilities
          ========================================================================= */}
       <section className="border-b border-line bg-paper py-10 lg:py-14" id="services">
         <Container>
@@ -148,42 +123,6 @@ export default function HomePage() {
           </div>
 
           <InteractiveServiceExplorer />
-        </Container>
-      </section>
-
-      {/* =========================================================================
-          5. INSTITUTIONAL STANDARDS: 4 Core Differentiators
-         ========================================================================= */}
-      <section className="border-b border-line bg-white py-10 lg:py-14">
-        <Container>
-          <div className="max-w-2xl mb-6">
-            <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
-              Institutional Standards
-            </span>
-            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
-              Why government departments choose ICT Media.
-            </h2>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {standards.map((s, i) => (
-              <div
-                key={s.title}
-                className="rounded-lg border border-line bg-paper p-4 transition-colors hover:border-teal/50"
-              >
-                <div className="flex items-center justify-between">
-                  <s.icon className="h-5 w-5 text-teal" />
-                  <span className="font-mono text-[10px] font-bold text-navy/40">0{i + 1}</span>
-                </div>
-                <h3 className="mt-2 font-display text-sm font-bold text-navy">
-                  {s.title}
-                </h3>
-                <p className="mt-1 text-xs leading-relaxed text-navy/70">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
         </Container>
       </section>
 
