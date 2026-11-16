@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { BookOpenText, CalendarHeart, Landmark, MessagesSquare, PartyPopper, Presentation, Signpost, type LucideIcon } from "lucide-react";
+import communityImage from "../../../../public/images/community.jpg";
+import NextStep from "@/components/NextStep";
+import PageHero from "@/components/PageHero";
+import Reveal from "@/components/Reveal";
+import { Chip, Container, Eyebrow, text } from "@/components/ui";
+
+export const metadata: Metadata = { title: "Government PR", description: "Government communication built around narrative, institutional positioning and citizen engagement by ICT Media." };
+
+type GovSolution = { title: string; label: string; text: string; icon: LucideIcon; groups: { label: string; items: string[] }[] };
+const solutions: GovSolution[] = [
+  { title: "Narrative", label: "What we say", text: "Strategic communication that builds recall for key messages, factually and transparently, while maintaining political neutrality where required.", icon: BookOpenText, groups: [{label:"Principles",items:["Factual","Transparent","Citizen-centric"]}] },
+  { title: "Positioning", label: "Where you stand", text: "Modern strategies shaped around institutional visibility and the unique needs of government initiatives.", icon: Signpost, groups: [{label:"Interpreted accurately",items:["Policies","Schemes","Legislation"]},{label:"In line with",items:["Administrative procedures","Approval protocols","Official channels"]}] },
+  { title: "Engagement", label: "How people take part", text: "Awareness campaigns, public consultation and citizen participation—supported by an understanding of public sentiment.", icon: MessagesSquare, groups: [{label:"What we produce",items:["Press notes","Speeches","Success stories","Case studies","Newsletters"]},{label:"How it travels",items:["Print","Electronic media","Social media","Digital discussions","Infographics","Videos"]}] },
+];
+const events: { title: string; detail: string; icon: LucideIcon }[] = [
+  {title:"Special days",detail:"Planning and executing events to mark significant public occasions.",icon:CalendarHeart},
+  {title:"Mahotsav",detail:"Organising large-scale festivals and cultural events.",icon:PartyPopper},
+  {title:"Workshops & seminars",detail:"Coordinating educational and informative gatherings.",icon:Presentation},
+];
+
+export default function GovernmentPrPage() {
+  return <>
+    <PageHero crumbs={[{label:"Government PR"}]} eyebrow="Public sector expertise" title="Communication built for government. Made for people." description="Clear, credible communication connects institutions with the communities they serve." icon={Landmark} index="03 / GOVERNMENT PR" />
+    <section className="bg-white py-16 lg:py-24"><Container className="grid lg:grid-cols-[1.15fr_.85fr]"><div className="relative min-h-[370px] bg-mist lg:min-h-[550px]"><Image src={communityImage} alt="Residents talking together at a community meeting in India" fill placeholder="blur" sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-[50%_60%] saturate-[.85]" /></div><div className="flex flex-col justify-between bg-navy px-8 py-10 text-white sm:px-12 sm:py-12"><Eyebrow onDark>The aim</Eyebrow><p className="mt-20 font-display text-[clamp(2rem,3.3vw,3.75rem)] font-medium leading-[1.2] tracking-[-.055em]">Informed communities. <span className="text-lime">Stronger public trust.</span></p><span className="mt-10 font-mono text-[11px] uppercase tracking-[.13em] text-white/50">Listen / Explain / Engage</span></div></Container></section>
+    <section className="bg-paper py-20 lg:py-28"><Container><div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><Eyebrow>The approach</Eyebrow><h2 className={`mt-6 text-navy ${text.h2}`}>Three parts. <span className="text-teal">One public conversation.</span></h2></div><p className="max-w-xl text-[16px] leading-8 text-navy/60">Good public communication has a clear narrative, a credible position and space for people to participate.</p></div><Reveal as="ol" stagger={100} className="mt-14 divide-y divide-line border-t border-navy">{solutions.map((solution,i)=><li key={solution.title} className="grid gap-6 py-9 lg:grid-cols-[70px_minmax(230px,.6fr)_1fr] lg:gap-10 lg:py-12"><span className="font-mono text-xs text-teal">0{i+1} / 03</span><div><solution.icon className="h-8 w-8 text-teal" strokeWidth={1.3} aria-hidden="true"/><p className="mt-6 font-mono text-[11px] uppercase tracking-[.12em] text-teal">{solution.label}</p><h3 className="mt-2 font-display text-[clamp(2rem,3vw,3rem)] font-semibold leading-tight tracking-[-.05em] text-navy">{solution.title}</h3></div><div><p className="max-w-xl text-[16px] leading-8 text-navy/65">{solution.text}</p><dl className="mt-6 space-y-5">{solution.groups.map(g=><div key={g.label}><dt className="font-mono text-[11px] uppercase tracking-[.1em] text-teal">{g.label}</dt><dd className="mt-2 flex flex-wrap gap-2">{g.items.map(item=><Chip key={item}>{item}</Chip>)}</dd></div>)}</dl></div></li>)}</Reveal></Container></section>
+    <section id="events" className="border-t border-line bg-white py-20 lg:py-28"><Container><div className="grid gap-7 lg:grid-cols-[.8fr_1fr] lg:items-end"><div><Eyebrow>Beyond the message</Eyebrow><h2 className={`mt-6 text-navy ${text.h2}`}>Where people <span className="text-teal">come together.</span></h2></div><p className="max-w-lg text-[16px] leading-8 text-navy/60">Government events are an opportunity to turn information into genuine participation.</p></div><Reveal as="ol" stagger={90} className="mt-12 grid border-t border-navy md:grid-cols-3">{events.map((ev,i)=><li key={ev.title} className={`border-b border-line py-8 md:border-b-0 md:px-7 md:py-9 ${i>0 ? "md:border-l" : "md:pl-0"}`}><div className="flex items-center justify-between"><ev.icon className="h-8 w-8 text-teal" strokeWidth={1.3} aria-hidden="true"/><span className="font-mono text-[11px] text-teal">0{i+1}</span></div><h3 className="mt-10 font-display text-[23px] font-semibold tracking-[-.04em] text-navy">{ev.title}</h3><p className="mt-3 max-w-xs text-[15px] leading-7 text-navy/60">{ev.detail}</p></li>)}</Reveal></Container></section>
+    <NextStep eyebrow="Plan with us" title="The next public conversation starts here." description="Tell us what you're planning and who you need to reach." href="/contact?interest=government-communications" cta="Let's talk" />
+  </>;
+}

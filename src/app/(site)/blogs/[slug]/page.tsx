@@ -1,0 +1,28 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { ArrowLeft, ArrowRight, ArrowUpRight, Clock3 } from "lucide-react";
+import BlogShareButton from "@/components/BlogShareButton";
+import NextStep from "@/components/NextStep";
+import PageHero from "@/components/PageHero";
+import { Container, Eyebrow, TextLink } from "@/components/ui";
+import { blogArticles, readingMinutes } from "@/lib/blog";
+
+type Props={params:Promise<{slug:string}>};
+export const dynamicParams=false;
+export function generateStaticParams(){return blogArticles.map(({slug})=>({slug}));}
+export async function generateMetadata({params}:Props):Promise<Metadata>{const {slug}=await params;const a=blogArticles.find(x=>x.slug===slug);return a?{title:a.title,description:a.excerpt}:{title:"Article not found"};}
+const idOf=(s:string)=>s.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+
+export default async function BlogArticlePage({params}:Props){
+  const {slug}=await params;const index=blogArticles.findIndex(a=>a.slug===slug);if(index<0)notFound();
+  const article=blogArticles[index]; const minutes=readingMinutes(article); const previous=index>0?blogArticles[index-1]:null;const next=index+1<blogArticles.length?blogArticles[index+1]:null;
+  return <>
+    <PageHero crumbs={[{label:"Blogs",href:"/blogs"},{label:article.category}]} eyebrow={`${article.category} / ${minutes} min read`} title={article.title} description={article.excerpt} index={`JOURNAL / 0${index+1}`} />
+    <section className="bg-paper pb-10 lg:pb-16"><Container><figure className="relative aspect-[1.4] overflow-hidden bg-mist sm:aspect-[2.2]"><Image src={article.image} alt={article.imageAlt} fill priority sizes="(max-width: 1380px) 100vw, 1250px" className="object-cover saturate-[.85]"/><figcaption className="sr-only">{article.imageAlt}</figcaption></figure><div className="flex flex-wrap items-center justify-between gap-5 border-b border-line py-6"><p className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[.1em] text-navy/55"><Clock3 className="h-4 w-4 text-teal" aria-hidden="true" />ICT Media editorial &nbsp;·&nbsp; {minutes} min read</p><BlogShareButton title={article.title}/></div></Container></section>
+    <section className="bg-white py-16 lg:py-24"><Container className="grid gap-14 lg:grid-cols-[minmax(0,1fr)_300px] lg:gap-20"><article className="max-w-[760px]"><p className="font-display text-[clamp(1.35rem,2vw,1.8rem)] font-medium leading-[1.5] tracking-[-.025em] text-navy">{article.lead}</p><div className="mt-12 space-y-12">{article.sections.map((section,i)=><section key={section.heading} id={idOf(section.heading)} className="scroll-mt-28 border-t border-line pt-7"><span className="font-mono text-[11px] text-teal">0{i+1} / 04</span><h2 className="mt-4 font-display text-[clamp(1.45rem,2.3vw,2.1rem)] font-semibold leading-tight tracking-[-.045em] text-navy">{section.heading}</h2><div className="mt-5 space-y-4">{section.paragraphs.map((para,j)=><p key={j} className="text-[16px] leading-[1.9] text-navy/65">{para}</p>)}</div></section>)}</div><div className="mt-14"><TextLink href="/blogs">Back to all stories</TextLink></div></article><aside className="lg:sticky lg:top-28 lg:self-start"><div className="border-t-2 border-teal bg-mist p-6"><Eyebrow>The key points</Eyebrow><ol className="mt-6 divide-y divide-line">{article.takeaways.map((takeaway,i)=><li key={takeaway} className="flex gap-4 py-4 text-[14px] leading-6 text-navy/70"><span className="shrink-0 font-mono text-[11px] text-teal">0{i+1}</span>{takeaway}</li>)}</ol><Link href={article.serviceHref} className="mt-4 inline-flex min-h-11 items-center gap-2 border-b border-teal pb-1 text-sm font-semibold text-teal">Explore {article.service}<ArrowUpRight className="h-4 w-4" aria-hidden="true"/></Link></div></aside></Container></section>
+    <nav aria-label="More articles" className="border-t border-line bg-mist"><Container className="grid sm:grid-cols-2">{previous?<Link href={`/blogs/${previous.slug}`} className="group flex items-center gap-4 border-b border-line py-8 sm:border-b-0 sm:border-r sm:pr-8"><ArrowLeft className="h-5 w-5 shrink-0 text-teal transition-transform group-hover:-translate-x-1" aria-hidden="true"/><span><span className="font-mono text-[10px] uppercase tracking-[.12em] text-teal">Previous story</span><span className="mt-2 block font-display text-[18px] font-semibold leading-snug tracking-[-.03em] text-navy">{previous.title}</span></span></Link>:<span/>}{next?<Link href={`/blogs/${next.slug}`} className="group flex items-center justify-end gap-4 py-8 text-right sm:pl-8"><span><span className="font-mono text-[10px] uppercase tracking-[.12em] text-teal">Next story</span><span className="mt-2 block font-display text-[18px] font-semibold leading-snug tracking-[-.03em] text-navy">{next.title}</span></span><ArrowRight className="h-5 w-5 shrink-0 text-teal transition-transform group-hover:translate-x-1" aria-hidden="true"/></Link>:<Link href="/blogs" className="group flex items-center justify-end gap-4 py-8 text-right sm:pl-8"><span className="font-display text-lg font-semibold text-navy">All stories</span><ArrowRight className="h-5 w-5 text-teal" aria-hidden="true"/></Link>}</Container></nav>
+    <NextStep eyebrow="A question worth asking" title="Have this communication challenge?" description={`Tell us about your project and explore how ICT Media can help with ${article.service.toLowerCase()}.`} href={`/contact?interest=${article.contactInterest}`} cta="Talk with our team"/>
+  </>;
+}

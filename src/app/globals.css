@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #182831;
+  --color-navy-deep: #111e25;
+  --color-ink: #182831;
+  --color-teal: #236b62;
+  --color-mint: #d6e7dc;
+  --color-mint-soft: #e8efe8;
+  --color-lime: #d8ed9f;
+  --color-paper: #f5f6f2;
+  --color-mist: #eef1eb;
+  --color-line: #d9ded5;
+  --color-accent: #bc4a42;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+  body { background: var(--color-paper); color: var(--color-ink); }
+  ::selection { background: var(--color-lime); color: var(--color-ink); }
+  :focus-visible { outline: 2px solid var(--color-teal); outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* Intentional, brief entrance motion; content is visible in server HTML. */
+[data-reveal] { transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+[data-reveal="hidden"] { opacity: 0; transform: translateY(20px); }
+[data-reveal="shown"] { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] { opacity: 1 !important; transform: none !important; }
+}
+
+/* A gentle transition when a visitor explores the service list. */
+@keyframes image-arrive { from { opacity: .45; transform: scale(1.035); } to { opacity: 1; transform: scale(1); } }
+.service-image { animation: image-arrive .45s ease-out both; }
+
+/* A narrow editorial marker instead of decorative orbits and glow. */
+.corner-mark::before, .corner-mark::after { content: ""; position: absolute; z-index: 2; width: 22px; height: 22px; border-color: var(--color-lime); pointer-events: none; }
+.corner-mark::before { top: 16px; left: 16px; border-top: 2px solid; border-left: 2px solid; }
+.corner-mark::after { right: 16px; bottom: 16px; border-right: 2px solid; border-bottom: 2px solid; }
+
+
