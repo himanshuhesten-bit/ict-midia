@@ -1,32 +1,272 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { BookOpenText, CalendarHeart, Landmark, MessagesSquare, PartyPopper, Presentation, Signpost, type LucideIcon } from "lucide-react";
-import communityImage from "../../../../public/images/community.jpg";
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  BookOpenText,
+  CalendarHeart,
+  CheckCircle2,
+  Landmark,
+  MessagesSquare,
+  PartyPopper,
+  Presentation,
+  ShieldAlert,
+  Signpost,
+  type LucideIcon,
+} from "lucide-react";
+import governanceImage from "../../../../public/images/governance-building.jpg";
+import ClientLogoCarousel from "@/components/ClientLogoCarousel";
 import NextStep from "@/components/NextStep";
 import PageHero from "@/components/PageHero";
 import Reveal from "@/components/Reveal";
 import { Chip, Container, Eyebrow, text } from "@/components/ui";
+import { caseStudies } from "@/lib/clients";
 
-export const metadata: Metadata = { title: "Government PR", description: "Government communication built around narrative, institutional positioning and citizen engagement by ICT Media." };
+export const metadata: Metadata = {
+  title: "Government PR & Public Sector Communications — ICT Media",
+  description:
+    "Empanelled PR partner for Maharashtra State Departments, Municipal Corporations, and Public Bodies. Strategic narrative, institutional positioning, and citizen engagement.",
+};
 
-type GovSolution = { title: string; label: string; text: string; icon: LucideIcon; groups: { label: string; items: string[] }[] };
+type GovSolution = {
+  title: string;
+  label: string;
+  text: string;
+  icon: LucideIcon;
+  groups: { label: string; items: string[] }[];
+};
+
 const solutions: GovSolution[] = [
-  { title: "Narrative", label: "What we say", text: "Strategic communication that builds recall for key messages, factually and transparently, while maintaining political neutrality where required.", icon: BookOpenText, groups: [{label:"Principles",items:["Factual","Transparent","Citizen-centric"]}] },
-  { title: "Positioning", label: "Where you stand", text: "Modern strategies shaped around institutional visibility and the unique needs of government initiatives.", icon: Signpost, groups: [{label:"Interpreted accurately",items:["Policies","Schemes","Legislation"]},{label:"In line with",items:["Administrative procedures","Approval protocols","Official channels"]}] },
-  { title: "Engagement", label: "How people take part", text: "Awareness campaigns, public consultation and citizen participation—supported by an understanding of public sentiment.", icon: MessagesSquare, groups: [{label:"What we produce",items:["Press notes","Speeches","Success stories","Case studies","Newsletters"]},{label:"How it travels",items:["Print","Electronic media","Social media","Digital discussions","Infographics","Videos"]}] },
+  {
+    title: "Narrative Architecture",
+    label: "What the Administration Communicates",
+    text: "Strategic public communication that builds high recall for official policies, schemes, and milestones—factually, transparently, and with strict political neutrality.",
+    icon: BookOpenText,
+    groups: [
+      {
+        label: "Guiding Principles",
+        items: ["Factual Accuracy", "Transparent Intent", "Citizen-Centricity", "Political Neutrality"],
+      },
+      {
+        label: "Deliverables",
+        items: ["Press Releases", "Executive Speeches", "Whitepapers", "Citizen Charters"],
+      },
+    ],
+  },
+  {
+    title: "Institutional Positioning",
+    label: "Where the Department Stands",
+    text: "Modern communication frameworks shaped around public authority, departmental milestones, and administrative credibility across state and national forums.",
+    icon: Signpost,
+    groups: [
+      {
+        label: "Interpreted Accurately",
+        items: ["State Acts & Policies", "Welfare Subsidies", "Civic Masterplans"],
+      },
+      {
+        label: "Strict Adherence To",
+        items: ["Administrative Protocols", "Clearance Hierarchy", "Official Nomenclature"],
+      },
+    ],
+  },
+  {
+    title: "Citizen Engagement",
+    label: "How People Participate",
+    text: "Mass public awareness drives, grievance listening desks, and participatory campaigns powered by real-time public sentiment intelligence.",
+    icon: MessagesSquare,
+    groups: [
+      {
+        label: "Outreach Mediums",
+        items: ["Regional Print Dailies", "TV Bureaus", "Official Handles", "OOH Hoardings"],
+      },
+    ],
+  },
+  {
+    title: "Crisis PR & Rebuttal Desks",
+    label: "Protecting Public Trust",
+    text: "24/7 media and digital monitoring to immediately detect distorted reporting, clarify administrative facts, and issue authoritative rebuttals.",
+    icon: ShieldAlert,
+    groups: [
+      {
+        label: "Rapid Response",
+        items: ["24/7 News Monitoring", "Fact-Checking Desk", "Departmental Rebuttals"],
+      },
+    ],
+  },
 ];
-const events: { title: string; detail: string; icon: LucideIcon }[] = [
-  {title:"Special days",detail:"Planning and executing events to mark significant public occasions.",icon:CalendarHeart},
-  {title:"Mahotsav",detail:"Organising large-scale festivals and cultural events.",icon:PartyPopper},
-  {title:"Workshops & seminars",detail:"Coordinating educational and informative gatherings.",icon:Presentation},
+
+const eventTypes: { title: string; detail: string; icon: LucideIcon }[] = [
+  {
+    title: "State Conclaves & Summits",
+    detail: "Turnkey planning, VIP security coordination, broadcast-grade AV, and media centers.",
+    icon: Presentation,
+  },
+  {
+    title: "Project Foundation & Ceremonies",
+    detail: "Flawless dais management, ministerial protocol, foundation stone ceremonies, and press logistics.",
+    icon: Landmark,
+  },
+  {
+    title: "Public Awareness Mahotsavs",
+    detail: "Large-scale cultural festivals, wildlife weeks, agro-exhibitions, and citizen mobilization.",
+    icon: PartyPopper,
+  },
+  {
+    title: "Special Days & Commemorations",
+    detail: "Maharashtra Day, Constitution Day, Wildlife Week, and institutional centenary books.",
+    icon: CalendarHeart,
+  },
 ];
 
 export default function GovernmentPrPage() {
-  return <>
-    <PageHero crumbs={[{label:"Government PR"}]} eyebrow="Public sector expertise" title="Communication built for government. Made for people." description="Clear, credible communication connects institutions with the communities they serve." icon={Landmark} index="03 / GOVERNMENT PR" />
-    <section className="bg-white py-16 lg:py-24"><Container className="grid lg:grid-cols-[1.15fr_.85fr]"><div className="relative min-h-[370px] bg-mist lg:min-h-[550px]"><Image src={communityImage} alt="Residents talking together at a community meeting in India" fill placeholder="blur" sizes="(max-width: 1024px) 100vw, 60vw" className="object-cover object-[50%_60%] saturate-[.85]" /></div><div className="flex flex-col justify-between bg-navy px-8 py-10 text-white sm:px-12 sm:py-12"><Eyebrow onDark>The aim</Eyebrow><p className="mt-20 font-display text-[clamp(2rem,3.3vw,3.75rem)] font-medium leading-[1.2] tracking-[-.055em]">Informed communities. <span className="text-lime">Stronger public trust.</span></p><span className="mt-10 font-mono text-[11px] uppercase tracking-[.13em] text-white/50">Listen / Explain / Engage</span></div></Container></section>
-    <section className="bg-paper py-20 lg:py-28"><Container><div className="grid gap-6 lg:grid-cols-[.8fr_1.2fr] lg:items-end"><div><Eyebrow>The approach</Eyebrow><h2 className={`mt-6 text-navy ${text.h2}`}>Three parts. <span className="text-teal">One public conversation.</span></h2></div><p className="max-w-xl text-[16px] leading-8 text-navy/60">Good public communication has a clear narrative, a credible position and space for people to participate.</p></div><Reveal as="ol" stagger={100} className="mt-14 divide-y divide-line border-t border-navy">{solutions.map((solution,i)=><li key={solution.title} className="grid gap-6 py-9 lg:grid-cols-[70px_minmax(230px,.6fr)_1fr] lg:gap-10 lg:py-12"><span className="font-mono text-xs text-teal">0{i+1} / 03</span><div><solution.icon className="h-8 w-8 text-teal" strokeWidth={1.3} aria-hidden="true"/><p className="mt-6 font-mono text-[11px] uppercase tracking-[.12em] text-teal">{solution.label}</p><h3 className="mt-2 font-display text-[clamp(2rem,3vw,3rem)] font-semibold leading-tight tracking-[-.05em] text-navy">{solution.title}</h3></div><div><p className="max-w-xl text-[16px] leading-8 text-navy/65">{solution.text}</p><dl className="mt-6 space-y-5">{solution.groups.map(g=><div key={g.label}><dt className="font-mono text-[11px] uppercase tracking-[.1em] text-teal">{g.label}</dt><dd className="mt-2 flex flex-wrap gap-2">{g.items.map(item=><Chip key={item}>{item}</Chip>)}</dd></div>)}</dl></div></li>)}</Reveal></Container></section>
-    <section id="events" className="border-t border-line bg-white py-20 lg:py-28"><Container><div className="grid gap-7 lg:grid-cols-[.8fr_1fr] lg:items-end"><div><Eyebrow>Beyond the message</Eyebrow><h2 className={`mt-6 text-navy ${text.h2}`}>Where people <span className="text-teal">come together.</span></h2></div><p className="max-w-lg text-[16px] leading-8 text-navy/60">Government events are an opportunity to turn information into genuine participation.</p></div><Reveal as="ol" stagger={90} className="mt-12 grid border-t border-navy md:grid-cols-3">{events.map((ev,i)=><li key={ev.title} className={`border-b border-line py-8 md:border-b-0 md:px-7 md:py-9 ${i>0 ? "md:border-l" : "md:pl-0"}`}><div className="flex items-center justify-between"><ev.icon className="h-8 w-8 text-teal" strokeWidth={1.3} aria-hidden="true"/><span className="font-mono text-[11px] text-teal">0{i+1}</span></div><h3 className="mt-10 font-display text-[23px] font-semibold tracking-[-.04em] text-navy">{ev.title}</h3><p className="mt-3 max-w-xs text-[15px] leading-7 text-navy/60">{ev.detail}</p></li>)}</Reveal></Container></section>
-    <NextStep eyebrow="Plan with us" title="The next public conversation starts here." description="Tell us what you're planning and who you need to reach." href="/contact?interest=government-communications" cta="Let's talk" />
-  </>;
+  return (
+    <>
+      <PageHero
+        crumbs={[{ label: "Government PR" }]}
+        eyebrow="Public Sector Strategic PR"
+        title="Communication built for government. Made for people."
+        description="Clear, credible, and protocol-compliant communication connecting state institutions with the citizens they serve across Maharashtra."
+        icon={Landmark}
+        index="02 / GOVERNMENT PR"
+      />
+
+      {/* Main Mission Section - Low Scroll */}
+      <section className="bg-white py-10 lg:py-14 border-b border-line">
+        <Container className="grid lg:grid-cols-[1fr_.9fr] gap-8 items-center">
+          <div className="relative min-h-[300px] overflow-hidden rounded-xl border border-line bg-mist lg:min-h-[380px]">
+            <Image
+              src={governanceImage}
+              alt="Civic government institutions and public communications in India"
+              fill
+              priority
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
+          <div className="flex flex-col justify-center rounded-xl bg-navy p-8 text-white lg:p-10">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-lime">
+              Institutional Purpose
+            </span>
+            <h3 className="mt-3 font-display text-2xl font-bold leading-tight lg:text-3xl">
+              Informed citizens. <br />
+              <span className="text-lime">Stronger public trust.</span>
+            </h3>
+            <p className="mt-4 text-xs leading-relaxed text-white/75">
+              Every government policy represents months of administrative effort. Its ultimate success depends on whether the public understands it, trusts it, and knows how to access its benefits.
+            </p>
+            <div className="mt-6 border-t border-white/15 pt-4 font-mono text-[10.5px] uppercase tracking-[.13em] text-white/60">
+              Listen · Demystify · Engage
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* 4 Pillars - Minimalist Grid */}
+      <section className="bg-paper py-12 lg:py-16 border-b border-line" id="solutions">
+        <Container>
+          <div className="flex items-end justify-between gap-4 border-b border-navy pb-4">
+            <div>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
+                Strategic Disciplines
+              </span>
+              <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
+                Four pillars of public communication.
+              </h2>
+            </div>
+            <span className="font-mono text-xs text-teal">01—04</span>
+          </div>
+
+          <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            {solutions.map((solution, i) => (
+              <div
+                key={solution.title}
+                className="flex flex-col justify-between rounded-lg border border-line bg-white p-6 shadow-sm"
+              >
+                <div>
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[11px] font-bold text-teal">0{i + 1}</span>
+                    <solution.icon className="h-5 w-5 text-teal" />
+                  </div>
+                  <span className="mt-3 block font-mono text-[10px] uppercase tracking-wider text-teal">
+                    {solution.label}
+                  </span>
+                  <h3 className="mt-1 font-display text-lg font-bold text-navy">
+                    {solution.title}
+                  </h3>
+                  <p className="mt-2 text-xs leading-relaxed text-navy/70">
+                    {solution.text}
+                  </p>
+                </div>
+
+                <div className="mt-4 border-t border-line/60 pt-3 flex flex-wrap gap-1.5">
+                  {solution.groups.flatMap((g) => g.items).map((item) => (
+                    <span
+                      key={item}
+                      className="rounded bg-mist px-2 py-0.5 font-mono text-[9.5px] text-navy/70"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Government Events - Minimalist Row */}
+      <section id="events" className="border-b border-line bg-white py-12 lg:py-14">
+        <Container>
+          <div className="max-w-2xl mb-6">
+            <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
+              State Events & Ceremonies
+            </span>
+            <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
+              Turnkey event management for public administration.
+            </h2>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {eventTypes.map((ev, i) => (
+              <div
+                key={ev.title}
+                className="rounded-lg border border-line bg-paper p-5 transition-colors hover:border-teal/40"
+              >
+                <div className="flex items-center justify-between">
+                  <ev.icon className="h-5 w-5 text-teal" />
+                  <span className="font-mono text-[10px] font-bold text-navy/40">0{i + 1}</span>
+                </div>
+                <h3 className="mt-3 font-display text-sm font-bold text-navy">
+                  {ev.title}
+                </h3>
+                <p className="mt-1.5 text-xs leading-relaxed text-navy/70">
+                  {ev.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* Client Logos Ribbon */}
+      <section className="bg-paper py-8 border-b border-line">
+        <Container>
+          <div className="mb-4">
+            <span className="font-mono text-[11px] uppercase tracking-widest text-teal font-semibold">
+              Empanelled Government Partners
+            </span>
+          </div>
+          <ClientLogoCarousel limit={12} />
+        </Container>
+      </section>
+
+      <NextStep
+        eyebrow="Plan with our Government PR Team"
+        title="The next public conversation starts here."
+        description="Tell us about your department's upcoming schemes, state events, or media outreach objectives."
+        href="/contact?interest=government-communications"
+        cta="Initiate Briefing"
+      />
+    </>
+  );
 }
