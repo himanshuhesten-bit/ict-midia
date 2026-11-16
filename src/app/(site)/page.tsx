@@ -11,11 +11,12 @@ import {
   Phone,
   ShieldAlert,
   ShieldCheck,
+  TrendingUp,
 } from "lucide-react";
 import ClientLogoCarousel from "@/components/ClientLogoCarousel";
 import CountUp from "@/components/CountUp";
-import HeroSlider from "@/components/HeroSlider";
 import InteractiveServiceExplorer from "@/components/InteractiveServiceExplorer";
+import ModernHero from "@/components/ModernHero";
 import NextStep from "@/components/NextStep";
 import { Container, Eyebrow } from "@/components/ui";
 import { blogArticles, readingMinutes } from "@/lib/blog";
@@ -29,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 const metrics = [
-  { value: "13+", label: "Years Public Sector PR", sub: "Est. 2013 in Nagpur" },
+  { value: "13+", label: "Years Public Sector PR", sub: "Established 2013 in Nagpur" },
   { value: "50+", label: "Government Bodies", sub: "Departments, PSUs & Municipalities" },
   { value: "100+", label: "Assignments Delivered", sub: "Conclaves, Campaigns & Audits" },
   { value: "23+", label: "Empanelled Authorities", sub: "Pan-Maharashtra Reach" },
@@ -43,8 +44,8 @@ const standards = [
   },
   {
     icon: Newspaper,
-    title: "Bureau Network",
-    desc: "Daily liaison with accredited correspondents, regional press clubs, and television networks across all districts.",
+    title: "Pan-Maharashtra Bureau Network",
+    desc: "Daily liaison with accredited correspondents, regional press clubs, and television networks across all 36 districts.",
   },
   {
     icon: ShieldAlert,
@@ -53,8 +54,31 @@ const standards = [
   },
   {
     icon: Languages,
-    title: "Multilingual Nuance",
-    desc: "Flawless communication in Marathi, Hindi, and English—translating policy into citizen understanding.",
+    title: "Multilingual Citizen Nuance",
+    desc: "Flawless communication in Marathi, Hindi, and English—translating complex policy into citizen understanding.",
+  },
+];
+
+const processSteps = [
+  {
+    num: "01",
+    title: "Institutional Audit & Perception Intelligence",
+    detail: "Evaluating public sentiment, media footprint, and departmental priorities across regional and national channels.",
+  },
+  {
+    num: "02",
+    title: "Policy & Message Architecture",
+    detail: "Structuring factual, protocol-compliant key messages, speeches, and citizen charters in Marathi, Hindi, and English.",
+  },
+  {
+    num: "03",
+    title: "Omnichannel Dissemination",
+    detail: "Orchestrated release across print bureaus, television broadcast, digital handles, hoardings, and on-ground forums.",
+  },
+  {
+    num: "04",
+    title: "Impact Verification & Citizen Feedback",
+    detail: "Quantifying editorial reach, public perception shifts, and actionable citizen feedback for administrative leadership.",
   },
 ];
 
@@ -62,24 +86,33 @@ export default function HomePage() {
   return (
     <>
       {/* =========================================================================
-          1. INTERACTIVE ANIMATED HERO SECTION: Low Scroll, Dynamic & High Contrast
+          1. MODERN INTERACTIVE HERO SECTION: Agencyo/Digitos Inspired Authority
          ========================================================================= */}
-      <section className="border-b border-line bg-paper py-8 lg:py-12">
+      <section className="bg-paper py-6 sm:py-8 lg:py-10">
         <Container>
-          <HeroSlider />
+          <ModernHero />
         </Container>
       </section>
 
       {/* =========================================================================
-          2. METRICS STRIP: High Density & Low Height
+          2. ANIMATED LOGO MARQUEE CAROUSEL: All 23 Government Partners
          ========================================================================= */}
-      <section className="border-b border-line bg-mist py-5" aria-label="Key metrics">
+      <section className="border-y border-line bg-white py-6" id="clients">
+        <Container>
+          <ClientLogoCarousel limit={23} />
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          3. METRICS STRIP: High Density & Public Sector Track Record
+         ========================================================================= */}
+      <section className="border-b border-line bg-mist py-6" aria-label="Key metrics">
         <Container>
           <dl className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {metrics.map((m, i) => (
               <div
                 key={m.label}
-                className={`pl-4 ${i === 0 ? "border-l-2 border-teal" : "border-l border-line"}`}
+                className={`pl-4 ${i === 0 ? "border-l-3 border-teal" : "border-l border-line"}`}
               >
                 <dd className="font-display text-2xl font-extrabold leading-tight text-navy sm:text-3xl">
                   <CountUp value={m.value} />
@@ -93,33 +126,24 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          3. ANIMATED LOGO MARQUEE CAROUSEL: All 23 Government Partners
-         ========================================================================= */}
-      <section className="border-b border-line bg-white py-6" id="clients">
-        <Container>
-          <ClientLogoCarousel limit={23} />
-        </Container>
-      </section>
-
-      {/* =========================================================================
-          4. INTERACTIVE SERVICE EXPLORER: 9 Capabilities with Live Preview
+          4. INTERACTIVE SERVICE EXPLORER: 9 Public Sector Capabilities
          ========================================================================= */}
       <section className="border-b border-line bg-paper py-10 lg:py-14" id="services">
         <Container>
           <div className="flex flex-wrap items-end justify-between gap-4 border-b border-navy pb-4 mb-6">
             <div>
               <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
-                Interactive Capabilities Matrix
+                Public Sector Capabilities
               </span>
               <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy lg:text-3xl">
-                Nine public sector services. <span className="text-teal">Interactive explorer.</span>
+                Nine specialized services. <span className="text-teal">Interactive explorer.</span>
               </h2>
             </div>
             <Link
               href="/services"
               className="font-mono text-xs font-semibold uppercase tracking-wider text-teal hover:underline"
             >
-              All Specifications →
+              All Service Specifications →
             </Link>
           </div>
 
@@ -128,13 +152,13 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          5. INSTITUTIONAL STANDARDS: 4 Minimalist Highlights
+          5. INSTITUTIONAL STANDARDS: 4 Core Differentiators
          ========================================================================= */}
-      <section className="border-b border-line bg-white py-10 lg:py-12">
+      <section className="border-b border-line bg-white py-10 lg:py-14">
         <Container>
           <div className="max-w-2xl mb-6">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
-              Institutional Discipline
+              Institutional Standards
             </span>
             <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
               Why government departments choose ICT Media.
@@ -148,7 +172,7 @@ export default function HomePage() {
                 className="rounded-lg border border-line bg-paper p-4 transition-colors hover:border-teal/50"
               >
                 <div className="flex items-center justify-between">
-                  <s.icon className="h-4 w-4 text-teal" />
+                  <s.icon className="h-5 w-5 text-teal" />
                   <span className="font-mono text-[10px] font-bold text-navy/40">0{i + 1}</span>
                 </div>
                 <h3 className="mt-2 font-display text-sm font-bold text-navy">
@@ -164,7 +188,7 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          6. CURATED CASE STUDIES: 3 Compact Cards (Low Scroll)
+          6. CURATED CASE STUDIES: Demonstrated Public Outcomes
          ========================================================================= */}
       <section className="border-b border-line bg-paper py-10 lg:py-14">
         <Container>
@@ -174,14 +198,14 @@ export default function HomePage() {
                 Demonstrated Impact
               </span>
               <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
-                Recent public sector assignments.
+                Key government assignments.
               </h2>
             </div>
             <Link
               href="/clients#case-studies"
               className="font-mono text-xs font-semibold uppercase tracking-wider text-teal hover:underline"
             >
-              All Case Studies →
+              All 6 Case Studies →
             </Link>
           </div>
 
@@ -215,9 +239,47 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          7. JOURNAL: 2 Minimalist Stories
+          7. THE 4-STAGE PUBLIC PR METHODOLOGY ROADMAP
          ========================================================================= */}
-      <section className="border-b border-line bg-white py-8 lg:py-10">
+      <section className="border-b border-line bg-white py-10 lg:py-12">
+        <Container>
+          <div className="flex items-center justify-between border-b border-navy pb-3 mb-6">
+            <div>
+              <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
+                Government PR Methodology
+              </span>
+              <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-navy">
+                From policy gazette to citizen impact.
+              </h2>
+            </div>
+            <span className="font-mono text-xs text-navy/50">4-Stage Protocol</span>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {processSteps.map((step) => (
+              <div
+                key={step.num}
+                className="rounded-lg border border-line bg-paper p-4"
+              >
+                <span className="font-mono text-xs font-bold text-teal">
+                  STAGE {step.num}
+                </span>
+                <h3 className="mt-2 font-display text-sm font-bold text-navy">
+                  {step.title}
+                </h3>
+                <p className="mt-1 text-xs text-navy/65 leading-relaxed">
+                  {step.detail}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
+      {/* =========================================================================
+          8. PUBLIC PR JOURNAL: 2 Minimalist Stories
+         ========================================================================= */}
+      <section className="border-b border-line bg-paper py-8 lg:py-10">
         <Container>
           <div className="flex items-center justify-between border-b border-navy pb-3 mb-5">
             <span className="font-mono text-[11px] font-semibold uppercase tracking-[.14em] text-teal">
@@ -233,7 +295,7 @@ export default function HomePage() {
               <Link
                 key={article.slug}
                 href={`/blogs/${article.slug}`}
-                className="group flex flex-col justify-between rounded-lg border border-line bg-paper p-4 transition-colors hover:border-teal/50 hover:bg-white"
+                className="group flex flex-col justify-between rounded-lg border border-line bg-white p-4 transition-colors hover:border-teal/50"
               >
                 <div>
                   <div className="flex items-center justify-between font-mono text-[10px] text-teal">
@@ -257,7 +319,7 @@ export default function HomePage() {
       </section>
 
       {/* =========================================================================
-          8. CALL TO ACTION: Minimalist Proposal Request
+          9. CALL TO ACTION: Minimalist Proposal Request
          ========================================================================= */}
       <NextStep
         eyebrow="Government Consultation"
