@@ -1,74 +1,45 @@
 import type { Metadata } from "next";
-import DblClientele from "@/components/dbl/DblClientele";
-import DblCoreSectors from "@/components/dbl/DblCoreSectors";
-import DblExecutionStrengths from "@/components/dbl/DblExecutionStrengths";
-import DblFeaturedProjects from "@/components/dbl/DblFeaturedProjects";
-import DblLeadershipVision from "@/components/dbl/DblLeadershipVision";
-import DblMetricsStrip from "@/components/dbl/DblMetricsStrip";
-import DblNewsroom from "@/components/dbl/DblNewsroom";
-import DblTenderLiaison from "@/components/dbl/DblTenderLiaison";
-import DblWhoWeAre from "@/components/dbl/DblWhoWeAre";
-import ModernHero from "@/components/ModernHero";
-import { Container } from "@/components/ui";
+import MockupBentoGrid from "@/components/mockup/MockupBentoGrid";
+import MockupClients from "@/components/mockup/MockupClients";
+import MockupGovBanner from "@/components/mockup/MockupGovBanner";
+import MockupHero from "@/components/mockup/MockupHero";
+import MockupImpactCta from "@/components/mockup/MockupImpactCta";
+import MockupMetrics from "@/components/mockup/MockupMetrics";
+import MockupProcess from "@/components/mockup/MockupProcess";
+import MockupWhoWeAre from "@/components/mockup/MockupWhoWeAre";
 
 export const metadata: Metadata = {
-  title: "ICT Media — Strategic Communications & PR for Government & Public Sector",
+  title: "ICT Media — Building trust. Creating impact.",
   description:
-    "Empanelled PR & Strategic Communication Partner to Maharashtra Government Departments, Municipal Corporations, and Public Institutions since 2013.",
+    "Government. Brands. People. Connected through strategic communications. Empanelled partner to Maharashtra Government since 2013.",
 };
 
 export default function HomePage() {
   return (
     <>
-      {/* 1. ENTERPRISE NATION-BUILDING HERO SECTION (DBL Corporate Style) */}
-      <section className="bg-paper pt-6 pb-2 sm:pt-8 sm:pb-3 lg:pt-10 lg:pb-4">
-        <Container>
-          <ModernHero />
+      {/* 1. HERO SECTION: Building trust. Creating impact. */}
+      <MockupHero />
 
-          {/* 2. OPERATIONAL SCALE & PERFORMANCE METRICS TICKER */}
-          <div className="mt-6 sm:mt-8">
-            <DblMetricsStrip />
-          </div>
-        </Container>
-      </section>
+      {/* 2. METRICS STRIP: 100+ / 50+ / 13+ / 4+ */}
+      <MockupMetrics />
 
-      {/* 3. WHO WE ARE: INSTITUTIONAL PROFILE & EXECUTION PILLARS */}
-      <Container>
-        <DblWhoWeAre />
-      </Container>
+      {/* 3. CLIENT LOGOS STRIP */}
+      <MockupClients />
 
-      {/* 4. OUR CORE SECTORS: 6-GRID SPECIALIZED PRACTICE DIVISIONS */}
-      <Container>
-        <DblCoreSectors />
-      </Container>
+      {/* 4. WHO WE ARE: Your purpose. Our creative force. */}
+      <MockupWhoWeAre />
 
-      {/* 5. EXECUTION STRENGTHS: WHY GOVERNMENT DEPARTMENTS TRUST ICT MEDIA */}
-      <Container>
-        <DblExecutionStrengths />
-      </Container>
+      {/* 5. OUR EXPERTISE: Less noise. More connection. (Bento Grid) */}
+      <MockupBentoGrid />
 
-      {/* 6. FLAGSHIP ASSIGNMENTS & DEMONSTRATED PUBLIC OUTCOMES */}
-      <Container>
-        <DblFeaturedProjects />
-      </Container>
+      {/* 6. GOVERNMENT COMMUNICATIONS: Policy. People. Possibility. */}
+      <MockupGovBanner />
 
-      {/* 7. OUR CLIENTELE: 23 EMPANELLED GOVERNMENT BODIES MARQUEE */}
-      <DblClientele />
+      {/* 7. OUR PROCESS: Listen → Plan → Create → Connect */}
+      <MockupProcess />
 
-      {/* 8. LEADERSHIP VISION & INSTITUTIONAL ETHOS */}
-      <Container>
-        <DblLeadershipVision />
-      </Container>
-
-      {/* 9. NEWS & GAZETTE DESK: STRATEGIC PR JOURNAL */}
-      <Container>
-        <DblNewsroom />
-      </Container>
-
-      {/* 10. TENDER & EMPANELMENT LIAISON DESK (ACTIONABLE CTA) */}
-      <Container>
-        <DblTenderLiaison />
-      </Container>
+      {/* 8. IMPACT CTA: Let’s make an impact. */}
+      <MockupImpactCta />
     </>
   );
 }

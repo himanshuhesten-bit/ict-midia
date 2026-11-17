@@ -243,12 +243,11 @@ export default function Header({ services }: { services: ServiceLink[] }) {
 
           <div className="flex items-center gap-3">
             <Link
-              href="/contact?interest=government-communications"
-              className="hidden min-h-11 items-center gap-3 bg-navy px-5 text-[13px] font-semibold text-white shadow-sm transition-all hover:bg-teal hover:shadow md:inline-flex"
+              href="/contact"
+              className="hidden min-h-10 items-center gap-2 rounded-full bg-[#111e25] px-6 text-xs font-bold uppercase tracking-wider text-white shadow-sm transition-all hover:bg-teal hover:shadow md:inline-flex"
             >
-              <Landmark className="h-4 w-4 text-lime" aria-hidden="true" />
-              Request RFP / Proposal
-              <ArrowUpRight aria-hidden="true" className="h-4 w-4" />
+              Let&apos;s Talk
+              <ArrowUpRight aria-hidden="true" className="h-3.5 w-3.5" />
             </Link>
 
             <button
