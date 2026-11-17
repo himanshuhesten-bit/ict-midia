@@ -31,7 +31,7 @@ const slides: HeroSlide[] = [
     headline: "Where policy",
     headlineAccent: "meets people.",
     description:
-      "Strategic PR, ministerial briefings, and narrative architecture built to establish enduring public authority and citizen trust across Maharashtra.",
+      "Empanelled PR, ministerial briefings, and narrative architecture building citizen trust across Maharashtra.",
     primaryHref: "/services/public-relations",
     primaryCta: "Explore PR Practice",
     secondaryHref: "/contact?interest=government-communications",
@@ -45,7 +45,7 @@ const slides: HeroSlide[] = [
     headline: "Turnkey state conclaves &",
     headlineAccent: "ceremonies.",
     description:
-      "Zero-defect dais protocol, ministerial security liaison, broadcast-grade 4K LED video walls, and accredited press centers for high-profile summits.",
+      "Zero-defect dais protocol, 4K LED staging, and accredited press centers for high-profile state summits.",
     primaryHref: "/services/government-events",
     primaryCta: "Event Management PR",
     secondaryHref: "/clients#case-studies",
@@ -59,7 +59,7 @@ const slides: HeroSlide[] = [
     headline: "Connecting policy to",
     headlineAccent: "grassroots citizens.",
     description:
-      "Translating complex welfare schemes, gazette directives, and civic masterplans into clear, actionable narratives in Marathi, Hindi, and English.",
+      "Connecting welfare policies and gazettes to grassroots citizens in Marathi, Hindi, and English across 36 districts.",
     primaryHref: "/government-pr",
     primaryCta: "Citizen PR Framework",
     secondaryHref: "/clients",
@@ -73,7 +73,7 @@ const slides: HeroSlide[] = [
     headline: "Safeguarding public trust with",
     headlineAccent: "real-time rebuttals.",
     description:
-      "Round-the-clock media and digital monitoring to immediately detect distorted reporting, clarify administrative facts, and deploy verified official rebuttals.",
+      "24/7 media monitoring and rapid administrative rebuttals deployed within 60 minutes to safeguard public trust.",
     primaryHref: "/services/public-relations",
     primaryCta: "Crisis Management PR",
     secondaryHref: "/contact",
